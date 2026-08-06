@@ -51,6 +51,7 @@ fundamentos-de-linux/
 ├── fundamentos-de-linux.css    # estilos (design system em variáveis CSS)
 ├── fundamentos-de-linux.js     # interatividade (progresso, busca, tema)
 ├── fundamentos-de-linux.md     # versão texto do curso
+├── LICENSE                     # licença CC BY 4.0
 └── README.md
 ```
 
@@ -60,4 +61,6 @@ Os comandos foram verificados contra a documentação oficial (Grafana, Promethe
 
 ## 📄 Licença
 
-Este material é livre para estudo e uso pessoal. Sinta-se à vontade para usar, adaptar e compartilhar.
+Este material está licenciado sob a **Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)** — você pode usar, adaptar e compartilhar, desde que atribua o crédito ao autor.
+
+[![CC BY 4.0](https://img.shields.io/badge/CC%20BY%204.0-238636?style=flat-square&logo=creativecommons&logoColor=white)](LICENSE)
