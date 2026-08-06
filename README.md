@@ -1,5 +1,16 @@
 # 🐧 Fundamentos de Linux
 
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://daringfireball.net/projects/markdown/)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/)
+
+[![Linguagem principal](https://img.shields.io/github/languages/top/CrisisUp/fundamentos-de-linux?style=flat-square&color=0e7490)](https://github.com/CrisisUp/fundamentos-de-linux)
+[![Linguagens usadas](https://img.shields.io/github/languages/count/CrisisUp/fundamentos-de-linux?style=flat-square&color=0e7490)](https://github.com/CrisisUp/fundamentos-de-linux)
+[![Licença](https://img.shields.io/badge/licen%C3%A7a-livre-238636?style=flat-square)](LICENSE)
+
 Um curso interativo e gratuito de Fundamentos de Linux — do primeiro comando à infraestrutura. São **8 módulos e 32 lições**, com blocos de código comentados, exercícios práticos e um glossário.
 
 ## ✨ Destaques
