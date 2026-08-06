@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Fundamentos de Linux — Curso</title>
+  <link rel="stylesheet" href="fundamentos-de-linux.css">
+</head>
+
+<body>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar" aria-label="Navegação do curso" data-open="false">
+      <p class="brand">🐧 Fundamentos de Linux</p>
+      <p class="brand-sub">Curso interativo</p>
+      <label class="progress-label" for="search">Buscar tópicos</label>
+      <input class="search" id="search" type="search" placeholder="Buscar tópicos…" aria-label="Buscar tópicos">
+      <div class="progress-wrap" role="group" aria-label="Progresso geral do curso">
+        <div class="progress-label"><span>Progresso geral</span><span id="overallText" aria-live="polite">0/0</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="overallBar" role="progressbar" aria-label="Progresso" aria-valuemin="0"
+            aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+      </div>
+      <nav id="toc" aria-label="Índice do curso"></nav>
+    </aside>
+
+    <main class="content" id="conteudo">
+      <div class="topbar">
+        <button class="btn menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu"
+          aria-expanded="false">☰</button>
+        <button class="btn" id="themeToggle" type="button" aria-label="Alternar tema (claro/escuro)"
+          aria-pressed="false">🌙</button>
+        <span class="topbar-spacer"></span>
+        <button class="btn" id="printBtn" type="button" aria-label="Imprimir a página">🖨️</button>
+      </div>
+
+      <h1>Fundamentos de Linux</h1>
+      <p class="hero-sub">Um curso guiado — do conceito à infraestrutura, com prática em cada módulo.</p>
+      <p class="hero-done" id="heroDone" aria-live="polite"></p>
+
+      <div class="tip">
+        <strong>Como usar:</strong> navegue pelo menu lateral, marque as lições concluídas conforme avança e use a busca
+        para achar comandos. Nos blocos de código, <code>$</code> é o prompt de usuário comum e <code>#</code> o de
+        <em>root</em> — digite só o comando. Teste tudo em um terminal ou máquina virtual.
+      </div>
+
+      <!-- ================= MÓDULO 1 ================= -->
+      <section class="module" data-title="Introdução">
+        <h2 class="module-title">Módulo 1 — Introdução <span class="module-badge" data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="o-que-e" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="o-que-e-body">
+            <span class="lesson-num">1.1</span>
+            <h3 class="lesson-title">O que é o Linux</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="o-que-e-body">
+            <p><strong>Linux</strong> é um <strong>sistema operacional</strong> — o software que gerencia o hardware e
+              fornece serviços para os programas. Tecnicamente, <em>Linux</em> é o nome do <strong>kernel</strong> (o
+              núcleo); o sistema completo é a combinação do kernel com as ferramentas (grande parte delas do projeto
+              GNU) e os aplicativos.</p>
+            <ul>
+              <li><strong>Open source:</strong> o código-fonte é aberto — dá para ler, estudar, modificar e
+                redistribuir.</li>
+              <li><strong>Gratuito:</strong> a maioria das distribuições é baixada e usada sem custo.</li>
+              <li><strong>Multiusuário:</strong> várias pessoas usam a mesma máquina, cada uma com sua conta.</li>
+              <li><strong>Multitarefa:</strong> executa vários programas ao mesmo tempo.</li>
+              <li><strong>Estável e seguro:</strong> padrão em servidores por confiabilidade.</li>
+              <li><strong>Onipresente:</strong> servidores, celulares (Android usa o kernel Linux), TVs, roteadores,
+                carros e sistemas embarcados.</li>
+            </ul>
+            <div class="tip">📌 <strong>Nota:</strong> "Linux" vs "GNU/Linux" é uma discussão técnica válida: o Linux é
+              o kernel; o sistema que você usa combina o kernel Linux com as ferramentas GNU (como <code>ls</code>,
+              <code>grep</code>, <code>bash</code>).</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="instalacao" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="instalacao-body">
+            <span class="lesson-num">1.2</span>
+            <h3 class="lesson-title">Instalando: máquina virtual ou WSL</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="instalacao-body">
+            <p>Antes de tudo, você precisa de um ambiente para praticar. As duas formas mais simples:</p>
+            <h3>Opção A — Máquina virtual (recomendada para aprender)</h3>
+            <p>Uma <strong>VM</strong> roda o Linux como um "computador dentro do computador", sem tocar no seu sistema.
+              Ótima para testar sem riscos.</p>
+            <ol>
+              <li>Baixe o <strong>VirtualBox</strong> (gratuito) em virtualbox.org e instale.</li>
+              <li>Baixe a ISO do <strong>Ubuntu Desktop</strong> em ubuntu.com/download.</li>
+              <li>No VirtualBox: <strong>Novo →</strong> nome "Linux", tipo Linux, versão Ubuntu (64-bit).</li>
+              <li>Dê <strong>4 GB de RAM</strong> e <strong>25 GB de disco</strong> (valores mínimos razoáveis).</li>
+              <li>Em <strong>Configurações → Armazenamento</strong>, anexe o arquivo ISO ao drive de CD.</li>
+              <li>Inicie a máquina e siga o instalador. Depois da instalação, <strong>remova a ISO</strong> do drive.
+              </li>
+            </ol>
+            <h3>Opção B — WSL no Windows (mais leve)</h3>
+            <p>O <strong>WSL</strong> (Windows Subsystem for Linux) roda o Linux nativamente dentro do Windows, sem
+              interface gráfica — perfeito para o terminal.</p>
+            <pre><code><span class="c"># No PowerShell como Administrador:</span>
+wsl --install
+<span class="c"># Reinicie o computador. Depois, o Ubuntu será instalado automaticamente.</span>
+<span class="c"># Para abrir o terminal Linux, procure por "Ubuntu" no Menu Iniciar.</span></code></pre>
+            <p>Comandos úteis do WSL:</p>
+            <pre><code><span class="cmd">wsl --list</span>           <span class="c"># distribuições instaladas</span>
+<span class="cmd">wsl --set-version Ubuntu 2</span>  <span class="c"># usa o WSL 2 (recomendado)</span>
+<span class="cmd">wsl</span>                  <span class="c"># abre o terminal Linux a partir do Windows</span></code></pre>
+            <div class="tip">📌 <strong>Na dúvida:</strong> comece com uma VM se quer ver o Linux com ambiente gráfico;
+              use o WSL se quer velocidade e já trabalha com o terminal.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="historia" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="historia-body">
+            <span class="lesson-num">1.3</span>
+            <h3 class="lesson-title">História em poucas palavras</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="historia-body">
+            <ul>
+              <li><strong>1969–70:</strong> Ken Thompson e Dennis Ritchie criam o <strong>UNIX</strong> nos laboratórios
+                Bell (AT&amp;T).</li>
+              <li><strong>1973:</strong> UNIX é reescrito em <strong>C</strong>, tornando-se portável para vários
+                hardwares.</li>
+              <li><strong>1983:</strong> Richard Stallman inicia o <strong>Projeto GNU</strong>, com ferramentas livres
+                que replicavam o UNIX.</li>
+              <li><strong>1991:</strong> <strong>Linus Torvalds</strong>, estudante na Finlândia, lança o kernel Linux
+                como um hobby.</li>
+              <li><strong>1993:</strong> surgem as primeiras distribuições (Debian, Slackware), facilitando a
+                instalação.</li>
+              <li><strong>Anos 2000+:</strong> Linux domina servidores e supercomputadores e, via Android, os
+                dispositivos móveis.</li>
+            </ul>
+            <p>Por que isso importa? Porque explica o <em>padrão UNIX</em> dos comandos: ferramentas pequenas, que fazem
+              uma coisa bem, combinadas por <em>pipes</em>.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="distribuicoes" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="distribuicoes-body">
+            <span class="lesson-num">1.4</span>
+            <h3 class="lesson-title">Distribuições</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="distribuicoes-body">
+            <p>Uma <strong>distribuição</strong> (distro) é um pacote completo — kernel + ferramentas + gerenciador de
+              pacotes + ambiente gráfico + aplicativos — mantido por uma comunidade ou empresa.</p>
+            <table>
+              <tr>
+                <th>Distribuição</th>
+                <th>Base</th>
+                <th>Melhor para</th>
+              </tr>
+              <tr>
+                <td><strong>Ubuntu</strong></td>
+                <td>Debian</td>
+                <td>Iniciantes, desktop, servidor simples</td>
+              </tr>
+              <tr>
+                <td><strong>Debian</strong></td>
+                <td>—</td>
+                <td>Estabilidade; base de muitas distros</td>
+              </tr>
+              <tr>
+                <td><strong>Fedora</strong></td>
+                <td>RHEL</td>
+                <td>Tecnologias recentes, desenvolvimento</td>
+              </tr>
+              <tr>
+                <td><strong>Rocky / Alma</strong></td>
+                <td>RHEL</td>
+                <td>Servidores empresariais (sucessores do CentOS)</td>
+              </tr>
+              <tr>
+                <td><strong>Linux Mint</strong></td>
+                <td>Ubuntu/Debian</td>
+                <td>Desktop amigável para iniciantes</td>
+              </tr>
+              <tr>
+                <td><strong>Arch</strong></td>
+                <td>—</td>
+                <td>Usuários avançados, aprendizado profundo</td>
+              </tr>
+              <tr>
+                <td><strong>Kali</strong></td>
+                <td>Debian</td>
+                <td>Segurança e testes de penetração</td>
+              </tr>
+            </table>
+            <p>Há duas grandes famílias de gerenciamento de pacotes:</p>
+            <ul>
+              <li><strong>Debian</strong> (Ubuntu, Mint, Kali): usa <code>apt</code> e pacotes <code>.deb</code>.</li>
+              <li><strong>Red Hat</strong> (Fedora, Rocky, Alma): usa <code>dnf</code>/<code>yum</code> e pacotes
+                <code>.rpm</code>.</li>
+            </ul>
+            <div class="tip">📌 <strong>Não existe "melhor distro".</strong> Existe a certa para o seu objetivo. Para
+              começar a estudar, Ubuntu ou Linux Mint são os caminhos mais suaves.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="arquitetura" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="arquitetura-body">
+            <span class="lesson-num">1.5</span>
+            <h3 class="lesson-title">Arquitetura e o kernel</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="arquitetura-body">
+            <p>O sistema é organizado em camadas, do hardware ao usuário:</p>
+            <ol>
+              <li><strong>Hardware</strong> — CPU, memória RAM, disco, rede.</li>
+              <li><strong>Kernel</strong> — núcleo; gerencia processos, memória, drivers e acesso ao hardware.</li>
+              <li><strong>Shell + utilitários</strong> — interface entre você e o kernel (<code>bash</code>,
+                <code>ls</code>, <code>cp</code>…).</li>
+              <li><strong>Aplicativos</strong> — programas do usuário (navegador, editor, servidor web).</li>
+            </ol>
+            <p><strong>Funções principais do kernel:</strong> gerenciar processos (quem roda e por quanto tempo na CPU),
+              gerenciar memória (alocar e proteger a RAM), organizar o sistema de arquivos, conversar com o hardware
+              (drivers) e isolar/segurar os processos.</p>
+            <pre><code><span class="cmd">uname -a</span>            <span class="c"># nome e versão do kernel</span>
+<span class="cmd">cat /etc/os-release</span>   <span class="c"># qual distribuição você está usando</span>
+<span class="cmd">free -h</span>               <span class="c"># memória RAM (em formato legível)</span>
+<span class="cmd">df -h</span>                 <span class="c"># espaço em disco das partições</span></code></pre>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= MÓDULO 2 ================= -->
+      <section class="module" data-title="Terminal e fundamentos">
+        <h2 class="module-title">Módulo 2 — Terminal e fundamentos <span class="module-badge" data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="terminal" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="terminal-body">
+            <span class="lesson-num">2.1</span>
+            <h3 class="lesson-title">Terminal, shell e comandos</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="terminal-body">
+            <p>O <strong>terminal</strong> é o programa que abre a janela de texto. A <strong>shell</strong> é o
+              interpretador que lê e executa os comandos. A mais comum é o <strong>Bash</strong>.</p>
+            <h3>Estrutura de um comando</h3>
+            <pre><code><span class="cmd">comando</span> [opções] [argumentos]
+<span class="cmd">ls</span> <span class="cmd">-l</span> <span class="c">/home</span>
+  │     │      └─ argumento: o que o comando opera
+  │     └─ opção: modifica o comportamento (começa com "-")
+  └─ comando: o programa a executar</code></pre>
+            <h3>Primeiros comandos</h3>
+            <pre><code><span class="cmd">pwd</span>            <span class="c"># diretório atual (print working directory)</span>
+<span class="cmd">whoami</span>         <span class="c"># qual usuário você é</span>
+<span class="cmd">date</span>           <span class="c"># data e hora</span>
+<span class="cmd">echo "olá"</span>     <span class="c"># imprime texto na tela</span>
+<span class="cmd">clear</span>          <span class="c"># limpa a tela (ou Ctrl+L)</span></code></pre>
+            <h3>Dicas de ouro</h3>
+            <ul>
+              <li><strong>Tab</strong> completa nomes de arquivos e comandos.</li>
+              <li><strong>↑/↓</strong> navegam pelo histórico.</li>
+              <li><strong>Ctrl+C</strong> interrompe o comando em execução; <strong>Ctrl+Z</strong> suspende.</li>
+              <li><code>comando --help</code> ou <code>man comando</code> mostram a documentação.</li>
+            </ul>
+            <div class="tip">📌 <strong><code>man</code> é seu melhor amigo.</strong> <code>man ls</code> abre o manual.
+              Saia com <code>q</code>.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="sistema-de-arquivos" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="sistema-de-arquivos-body">
+            <span class="lesson-num">2.2</span>
+            <h3 class="lesson-title">Sistema de arquivos</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="sistema-de-arquivos-body">
+            <p>No Linux não existem letras de unidade como <code>C:</code>. Tudo parte da raiz <code>/</code>, e outros
+              discos são <strong>montados</strong> em pastas dentro dela.</p>
+            <table>
+              <tr>
+                <th>Diretório</th>
+                <th>Para que serve</th>
+              </tr>
+              <tr>
+                <td><code>/</code></td>
+                <td>Raiz do sistema — ponto de partida de tudo</td>
+              </tr>
+              <tr>
+                <td><code>/home</code></td>
+                <td>Pastas pessoais dos usuários (ex.: <code>/home/ana</code>)</td>
+              </tr>
+              <tr>
+                <td><code>/etc</code></td>
+                <td>Arquivos de configuração do sistema</td>
+              </tr>
+              <tr>
+                <td><code>/bin</code>, <code>/usr/bin</code></td>
+                <td>Programas/executáveis essenciais</td>
+              </tr>
+              <tr>
+                <td><code>/var</code></td>
+                <td>Dados variáveis: logs, filas, caches</td>
+              </tr>
+              <tr>
+                <td><code>/tmp</code></td>
+                <td>Arquivos temporários (apagados ao reiniciar)</td>
+              </tr>
+              <tr>
+                <td><code>/dev</code></td>
+                <td>Dispositivos de hardware representados como arquivos</td>
+              </tr>
+              <tr>
+                <td><code>/proc</code>, <code>/sys</code></td>
+                <td>Informações virtuais do kernel/hardware em tempo real</td>
+              </tr>
+              <tr>
+                <td><code>/root</code></td>
+                <td>Pasta pessoal do usuário <em>root</em></td>
+              </tr>
+              <tr>
+                <td><code>/opt</code></td>
+                <td>Softwares opcionais/terceiros</td>
+              </tr>
+            </table>
+            <div class="tip">📌 <strong>Caminhos:</strong> <em>absoluto</em> começa em <code>/</code> (ex.:
+              <code>/home/ana/doc</code>); <em>relativo</em> parte do diretório atual. <code>.</code> = atual,
+              <code>..</code> = pai, <code>~</code> = sua pasta pessoal.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="navegacao" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="navegacao-body">
+            <span class="lesson-num">2.3</span>
+            <h3 class="lesson-title">Navegação e gerenciamento de arquivos</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="navegacao-body">
+            <pre><code><span class="cmd">ls</span>                <span class="c"># lista arquivos do diretório atual</span>
+<span class="cmd">ls -l</span>             <span class="c"># lista com detalhes (permissões, tamanho, data)</span>
+<span class="cmd">ls -a</span>             <span class="c"># inclui arquivos ocultos (começam com .)</span>
+<span class="cmd">ls -lh</span>            <span class="c"># tamanhos legíveis (KB, MB)</span>
+<span class="cmd">cd documentos</span>     <span class="c"># entra na pasta "documentos"</span>
+<span class="cmd">cd ..</span>             <span class="c"># sobe um nível</span>
+<span class="cmd">cd</span>                <span class="c"># volta para sua pasta pessoal</span>
+<span class="cmd">mkdir projetos</span>    <span class="c"># cria pasta</span>
+<span class="cmd">touch notas.txt</span>   <span class="c"># cria arquivo vazio</span>
+<span class="cmd">cp origem.txt destino.txt</span>  <span class="c"># copia arquivo</span>
+<span class="cmd">cp -r pasta1 pasta2</span>        <span class="c"># copia pasta recursivamente</span>
+<span class="cmd">mv a.txt b.txt</span>    <span class="c"># renomeia ou move</span>
+<span class="cmd">rm arquivo.txt</span>   <span class="c"># apaga arquivo</span>
+<span class="cmd">rm -r pasta</span>      <span class="c"># apaga pasta recursivamente</span>
+<span class="cmd">find . -name "*.txt"</span>  <span class="c"># procura arquivos por nome</span></code></pre>
+            <div class="warn">⚠️ <strong>Cuidado com <code>rm -rf</code>.</strong> <code>-f</code> força sem perguntar.
+              Um <code>rm -rf /</code> (ou um erro de digitação) pode apagar o sistema. Confira o caminho antes de
+              apagar.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="texto" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="texto-body">
+            <span class="lesson-num">2.4</span>
+            <h3 class="lesson-title">Trabalhando com texto</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="texto-body">
+            <pre><code><span class="cmd">cat arquivo.txt</span>      <span class="c"># mostra o conteúdo</span>
+<span class="cmd">less arquivo.txt</span>     <span class="c"># página o conteúdo (q para sair)</span>
+<span class="cmd">head -20 arquivo.txt</span> <span class="c"># primeiras 20 linhas</span>
+<span class="cmd">tail -20 arquivo.txt</span> <span class="c"># últimas 20 linhas</span>
+<span class="cmd">tail -f log.txt</span>      <span class="c"># acompanha em tempo real (muito usado em logs)</span>
+<span class="cmd">grep "erro" arquivo.txt</span>  <span class="c"># procura "erro" no arquivo</span>
+<span class="cmd">wc -l arquivo.txt</span>    <span class="c"># conta linhas</span>
+<span class="cmd">sort nomes.txt</span>       <span class="c"># ordena linhas</span>
+<span class="cmd">uniq nomes.txt</span>       <span class="c"># remove repetidas consecutivas</span></code></pre>
+            <h3>Pipes: a "cola" do Linux</h3>
+            <p>O <strong>pipe</strong> <code>|</code> pega a saída de um comando e a entrega como entrada do próximo:
+            </p>
+            <pre><code><span class="cmd">cat log.txt | grep "erro" | head -5</span>
+<span class="c"># pega o log, filtra linhas com "erro" e mostra as 5 primeiras</span>
+
+<span class="cmd">ps aux | grep nginx</span>
+<span class="c"># lista processos e filtra os que contêm "nginx"</span></code></pre>
+            <h3>Redirecionamento</h3>
+            <pre><code><span class="cmd">echo "olá" &gt; arquivo.txt</span>   <span class="c"># escreve no arquivo (sobrescreve)</span>
+<span class="cmd">echo "mais" &gt;&gt; arquivo.txt</span>  <span class="c"># adiciona ao final</span>
+<span class="cmd">comando 2&gt; erros.txt</span>       <span class="c"># redireciona os erros para um arquivo</span></code></pre>
+            <div class="tip">📌 <strong>Edite arquivos</strong> com <code>nano</code> (simples) ou <code>vim</code>
+              (poderoso). Ver a <a href="#editores">lição sobre editores</a>.</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= MÓDULO 3 ================= -->
+      <section class="module" data-title="Usuários, permissões e processos">
+        <h2 class="module-title">Módulo 3 — Usuários, permissões e processos <span class="module-badge"
+            data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="permissoes" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="permissoes-body">
+            <span class="lesson-num">3.1</span>
+            <h3 class="lesson-title">Permissões e proprietários</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="permissoes-body">
+            <p>Cada arquivo tem um <strong>dono</strong>, um <strong>grupo</strong> e três permissões:
+              <strong>r</strong> (ler), <strong>w</strong> (escrever), <strong>x</strong> (executar). A saída de
+              <code>ls -l</code> mostra 10 caracteres:</p>
+            <pre><code>-rwxr-xr--  1 ana desenvolvedores 2048 ago  6 10:00 script.sh
+│││ │││ │││
+│││ │││ └└└── outros usuários (r--)
+│││ └└└────── grupo (r-x)
+└└└────────── dono/usuário (rwx)
+└──────────── tipo (d = diretório, - = arquivo, l = link)</code></pre>
+            <pre><code><span class="cmd">chmod +x script.sh</span>     <span class="c"># dá permissão de executar para todos</span>
+<span class="cmd">chmod 755 script.sh</span>    <span class="c"># rwxr-xr-x</span>
+<span class="cmd">chmod 644 arquivo.txt</span>  <span class="c"># rw-r--r-- (padrão seguro para arquivos)</span>
+<span class="cmd">sudo chown ana script.sh</span>  <span class="c"># muda o dono (requer root)</span>
+<span class="cmd">sudo chgrp dev arquivo.txt</span> <span class="c"># muda o grupo</span></code></pre>
+            <table>
+              <tr>
+                <th>Número</th>
+                <th>Permissão</th>
+                <th>Significado</th>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>rwx</td>
+                <td>ler + escrever + executar</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>rw-</td>
+                <td>ler + escrever</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>r-x</td>
+                <td>ler + executar</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>r--</td>
+                <td>só leitura</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>---</td>
+                <td>nenhuma</td>
+              </tr>
+            </table>
+            <p>O modo numérico tem três dígitos: <strong>dono · grupo · outros</strong>. Ex.: <code>755</code> = dono
+              tudo (7), grupo ler+executar (5), outros ler+executar (5).</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="usuarios" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="usuarios-body">
+            <span class="lesson-num">3.2</span>
+            <h3 class="lesson-title">Usuários, grupos e sudo</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="usuarios-body">
+            <ul>
+              <li><strong>Usuário comum</strong> — você no dia a dia; não mexe em arquivos do sistema.</li>
+              <li><strong>root</strong> — superusuário com controle total; perigoso para uso diário.</li>
+              <li><strong>sudo</strong> — executa <em>um comando</em> com privilégios de root, de forma controlada.</li>
+              <li><strong>Grupos</strong> — conjuntos de usuários que compartilham permissões (<code>sudo</code>,
+                <code>docker</code>, <code>www-data</code>…).</li>
+            </ul>
+            <pre><code><span class="cmd">sudo apt update</span>        <span class="c"># roda "apt update" como root</span>
+<span class="cmd">whoami</span>                <span class="c"># quem sou eu</span>
+<span class="cmd">id</span>                   <span class="c"># meu UID, GID e grupos</span>
+<span class="cmd">groups</span>               <span class="c"># grupos dos quais faço parte</span>
+<span class="cmd">sudo useradd -m -s /bin/bash carlos</span>  <span class="c"># cria usuário com pasta pessoal</span>
+<span class="cmd">sudo passwd carlos</span>    <span class="c"># define a senha do usuário</span>
+<span class="cmd">sudo userdel -r carlos</span>  <span class="c"># remove usuário e sua pasta pessoal</span>
+<span class="cmd">sudo usermod -aG sudo carlos</span>  <span class="c"># adiciona "carlos" ao grupo sudo</span></code></pre>
+            <div class="warn">⚠️ <strong>Regra de ouro:</strong> nunca trabalhe como root no dia a dia. Use
+              <code>sudo</code> só para o comando que precisa.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="processos" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="processos-body">
+            <span class="lesson-num">3.3</span>
+            <h3 class="lesson-title">Processos</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="processos-body">
+            <p>Um <strong>processo</strong> é um programa em execução, identificado por um <strong>PID</strong> (Process
+              ID).</p>
+            <pre><code><span class="cmd">ps</span>                   <span class="c"># processos do meu terminal</span>
+<span class="cmd">ps aux</span>              <span class="c"># todos os processos, com detalhes</span>
+<span class="cmd">top</span>                 <span class="c"># monitor em tempo real (q para sair)</span>
+<span class="cmd">htop</span>                <span class="c"># versão amigável do top (pode exigir instalação)</span>
+<span class="cmd">kill 1234</span>           <span class="c"># encerra o processo de PID 1234</span>
+<span class="cmd">kill -9 1234</span>        <span class="c"># encerra à força (último recurso)</span>
+<span class="cmd">pkill nginx</span>         <span class="c"># encerra processos pelo nome</span>
+<span class="cmd">jobs / fg / bg</span>     <span class="c"># controla processos em primeiro/segundo plano</span></code></pre>
+            <div class="tip">📌 <strong>Combine com pipes:</strong> <code>ps aux | grep firefox</code> mostra só os
+              processos do Firefox.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="servicos" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="servicos-body">
+            <span class="lesson-num">3.4</span>
+            <h3 class="lesson-title">Serviços e systemd</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="servicos-body">
+            <p><strong>Serviços</strong> (daemons) são programas que rodam em segundo plano — servidor web, banco de
+              dados, rede. Na maioria das distros, eles são gerenciados pelo <strong>systemd</strong>.</p>
+            <pre><code><span class="cmd">systemctl status nginx</span>     <span class="c"># estado do serviço (ativo, falhou, em execução)</span>
+<span class="cmd">sudo systemctl start nginx</span>   <span class="c"># inicia</span>
+<span class="cmd">sudo systemctl stop nginx</span>    <span class="c"># para</span>
+<span class="cmd">sudo systemctl restart nginx</span> <span class="c"># reinicia</span>
+<span class="cmd">sudo systemctl enable nginx</span>  <span class="c"># inicia automaticamente no boot</span>
+<span class="cmd">sudo systemctl disable nginx</span> <span class="c"># remove do boot</span>
+<span class="cmd">sudo systemctl enable --now nginx</span>  <span class="c"># habilita E inicia de uma vez</span>
+<span class="cmd">systemctl list-units --type=service</span>  <span class="c"># lista serviços ativos</span></code></pre>
+            <div class="tip">📌 <strong>Vendo os logs de um serviço:</strong> <code>journalctl -u nginx</code> mostra os
+              logs do serviço (e <code>-f</code> acompanha em tempo real). Ver <a href="#logs">a lição de logs</a>.
+            </div>
+          </div>
+        </article>
+
+        <article class="lesson" id="cron" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="cron-body">
+            <span class="lesson-num">3.5</span>
+            <h3 class="lesson-title">Agendando tarefas com cron</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="cron-body">
+            <p>O <strong>cron</strong> executa comandos automaticamente em horários agendados. Cada usuário tem sua
+              tabela de tarefas.</p>
+            <pre><code><span class="cmd">crontab -e</span>   <span class="c"># edita sua tabela (abre no editor padrão)</span>
+<span class="cmd">crontab -l</span>   <span class="c"># lista suas tarefas</span>
+<span class="cmd">crontab -r</span>   <span class="c"># remove todas as suas tarefas</span></code></pre>
+            <p>Cada linha tem 5 campos de tempo + o comando: <strong>minuto · hora · dia-do-mês · mês · dia-da-semana ·
+                comando</strong>.</p>
+            <pre><code><span class="c">#  minuto hora dia mês sem  comando</span>
+  30       2    *   *    *    /usr/bin/backup.sh      <span class="c"># 02:30 todo dia</span>
+   0       9    *   *    1    /usr/bin/relatorio.sh   <span class="c"># segundas às 09:00</span>
+  15       0    1   *    *    /usr/bin/mensal.sh      <span class="c"># dia 1 de cada mês às 00:15</span>
+
+<span class="c"># Atalhos comuns:</span>
+@reboot   /usr/bin/servico.sh   <span class="c"># ao iniciar a máquina</span>
+@daily    /usr/bin/diario.sh    <span class="c"># equivalente a "0 0 * * *"</span></code></pre>
+            <div class="tip">📌 <strong>Na dúvida:</strong> confira se a tarefa rodou em
+              <code>journalctl | grep CRON</code> ou <code>/var/log/syslog</code>. E teste o script manualmente antes de
+              agendar.</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= MÓDULO 4 ================= -->
+      <section class="module" data-title="Sistema, pacotes e rede">
+        <h2 class="module-title">Módulo 4 — Sistema, pacotes e rede <span class="module-badge" data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="pacotes" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="pacotes-body">
+            <span class="lesson-num">4.1</span>
+            <h3 class="lesson-title">Gerenciamento de pacotes</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="pacotes-body">
+            <p>Programas no Linux são instalados por <strong>gerenciadores de pacotes</strong>, que resolvem as
+              dependências automaticamente.</p>
+            <h3>Família Debian/Ubuntu (<code>apt</code>)</h3>
+            <pre><code><span class="cmd">sudo apt update</span>          <span class="c"># atualiza a lista de pacotes disponíveis</span>
+<span class="cmd">sudo apt upgrade</span>         <span class="c"># atualiza os pacotes instalados</span>
+<span class="cmd">sudo apt install htop</span>    <span class="c"># instala um programa</span>
+<span class="cmd">sudo apt remove htop</span>     <span class="c"># remove um programa</span>
+<span class="cmd">apt search firefox</span>       <span class="c"># pesquisa por pacotes</span>
+<span class="cmd">apt show htop</span>           <span class="c"># informações de um pacote</span></code></pre>
+            <h3>Família Red Hat/Fedora (<code>dnf</code>)</h3>
+            <pre><code><span class="cmd">sudo dnf install htop</span>
+<span class="cmd">sudo dnf remove htop</span>
+<span class="cmd">sudo dnf search firefox</span></code></pre>
+            <h3>Outros gerenciadores</h3>
+            <ul>
+              <li><strong>Snap</strong> (<code>sudo snap install nome</code>) e <strong>Flatpak</strong>
+                (<code>flatpak install</code>) — pacotes universais entre distros.</li>
+              <li><strong>pip</strong> (Python), <strong>npm</strong> (Node.js), <strong>gem</strong> (Ruby) — por
+                linguagem.</li>
+            </ul>
+            <div class="tip">📌 Rode <code>sudo apt update</code> antes de instalar algo — instalações falham com lista
+              desatualizada.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="discos" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="discos-body">
+            <span class="lesson-num">4.2</span>
+            <h3 class="lesson-title">Discos e backups</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="discos-body">
+            <h3>Ver espaço e discos</h3>
+            <pre><code><span class="cmd">df -h</span>            <span class="c"># espaço livre por partição</span>
+<span class="cmd">du -sh /var</span>      <span class="c"># tamanho total de uma pasta</span>
+<span class="cmd">du -sh * | sort -h</span>  <span class="c"># tamanhos das pastas, do menor ao maior</span>
+<span class="cmd">lsblk</span>            <span class="c"># lista discos e partições</span>
+<span class="cmd">sudo fdisk -l</span>    <span class="c"># detalhes dos discos</span></code></pre>
+            <h3>Compactar e fazer backup</h3>
+            <pre><code><span class="cmd">tar -czf backup.tar.gz projetos</span>  <span class="c"># compacta a pasta em .tar.gz</span>
+<span class="cmd">tar -xzf backup.tar.gz</span>           <span class="c"># extrai</span>
+<span class="cmd">tar -tzf backup.tar.gz</span>           <span class="c"># lista o conteúdo sem extrair</span>
+
+<span class="cmd">rsync -av projetos/ /backup/projetos/</span>  <span class="c"># sincroniza pastas</span>
+<span class="cmd">rsync -av --delete projetos/ /backup/projetos/</span>  <span class="c"># espelha (apaga o que sumiu na origem)</span>
+<span class="cmd">rsync -av -e ssh projetos/ usuario@servidor:/backup/</span>  <span class="c"># backup remoto via SSH</span></code></pre>
+            <div class="tip">📌 <strong>Boa prática:</strong> faça backup antes de mexer em arquivos de configuração
+              importantes. Um backup barato evita catástrofes caras.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="rede" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="rede-body">
+            <span class="lesson-num">4.3</span>
+            <h3 class="lesson-title">Noções de rede</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="rede-body">
+            <pre><code><span class="cmd">ip a</span>                <span class="c"># endereços IP das interfaces</span>
+<span class="cmd">ip route</span>            <span class="c"># rota padrão / gateway</span>
+<span class="cmd">ping google.com</span>     <span class="c"># testa conectividade (Ctrl+C para parar)</span>
+<span class="cmd">curl https://exemplo.com</span>   <span class="c"># baixa conteúdo de uma URL</span>
+<span class="cmd">wget https://exemplo.com/arq.zip</span>  <span class="c"># baixa um arquivo</span>
+<span class="cmd">ss -tulpn</span>           <span class="c"># portas abertas e serviços escutando</span></code></pre>
+            <div class="tip">📌 <strong>Contexto:</strong> o <strong>IP</strong> é o endereço da máquina na rede; a
+              <strong>porta</strong> é a "porta de entrada" de um serviço (HTTP usa 80/443, SSH usa 22).</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="ssh" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="ssh-body">
+            <span class="lesson-num">4.4</span>
+            <h3 class="lesson-title">Acesso remoto com SSH</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="ssh-body">
+            <p>O <strong>SSH</strong> (Secure Shell) permite acessar outro computador com segurança, com conexão
+              criptografada.</p>
+            <h3>Convertendo</h3>
+            <pre><code><span class="cmd">ssh usuario@192.168.1.10</span>    <span class="c"># entra no servidor</span>
+<span class="cmd">ssh -p 2222 usuario@servidor</span> <span class="c"># porta diferente da padrão (22)</span>
+<span class="cmd">scp arquivo.txt usuario@servidor:/home/usuario/</span>  <span class="c"># copia via SSH</span>
+<span class="cmd">sftp usuario@servidor</span>   <span class="c"># sessão de transferência de arquivos</span></code></pre>
+            <h3>Chaves SSH (login sem senha — recomendado)</h3>
+            <pre><code><span class="cmd">ssh-keygen -t ed25519</span>            <span class="c"># cria um par de chaves (pública + privada)</span>
+<span class="cmd">ssh-copy-id usuario@servidor</span>     <span class="c"># instala sua chave pública no servidor</span>
+<span class="cmd">ssh usuario@servidor</span>             <span class="c"># agora entra sem digitar senha</span></code></pre>
+            <p>A chave pública fica em <code>~/.ssh/id_ed25519.pub</code> e é copiada para
+              <code>~/.ssh/authorized_keys</code> do servidor. A chave privada (<code>~/.ssh/id_ed25519</code>)
+              <strong>nunca</strong> deve sair da sua máquina.</p>
+            <h3>Arquivo de configuração (~/.ssh/config)</h3>
+            <pre><code>Host meuservidor
+    HostName 192.168.1.10
+    User ana
+    Port 2222</code></pre>
+            <p>Depois disso, basta <code>ssh meuservidor</code>.</p>
+            <div class="tip">📌 <strong>Túnel simples (port forwarding):</strong>
+              <code>ssh -L 8080:localhost:80 usuario@servidor</code> encaminha a porta local 8080 para o servidor — útil
+              para testar serviços com segurança.</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= MÓDULO 5 ================= -->
+      <section class="module" data-title="Serviços e infraestrutura">
+        <h2 class="module-title">Módulo 5 — Serviços e infraestrutura <span class="module-badge" data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="dns" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="dns-body">
+            <span class="lesson-num">5.1</span>
+            <h3 class="lesson-title">DNS e resolução de nomes</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="dns-body">
+            <p>O <strong>DNS</strong> (Domain Name System) traduz nomes de domínio (<code>exemplo.com</code>) em
+              endereços IP. É o "catálogo telefônico" da internet.</p>
+            <h3>Como o Linux resolve um nome</h3>
+            <ol>
+              <li>Verifica o <strong>cache</strong> local (systemd-resolved / nscd).</li>
+              <li>Lê <code>/etc/hosts</code> — exceções locais.</li>
+              <li>Consulta os servidores DNS definidos em <code>/etc/resolv.conf</code>.</li>
+            </ol>
+            <pre><code><span class="cmd">host exemplo.com</span>          <span class="c"># resolve nome → IP</span>
+<span class="cmd">dig exemplo.com</span>          <span class="c"># detalhado (consulta DNS completa)</span>
+<span class="cmd">dig +short exemplo.com</span>   <span class="c"># só o IP, sem rudy</span>
+<span class="cmd">nslookup exemplo.com</span>     <span class="c"># consulta simples (mais antigo)</span>
+<span class="cmd">cat /etc/resolv.conf</span>     <span class="c"># quais servidores DNS o sistema usa</span>
+<span class="cmd">cat /etc/hosts</span>           <span class="c"># mapeamentos manuais locais</span>
+<span class="cmd">dig exemplo.com MX</span>      <span class="c"># registros de e-mail do domínio</span>
+<span class="cmd">dig exemplo.com NS</span>      <span class="c"># servidores de nomes autoritativos</span></code></pre>
+            <h3>Ver registros de outro tipo (A, AAAA, CNAME, TXT)</h3>
+            <pre><code><span class="cmd">dig exemplo.com A</span>    <span class="c"># IPv4</span>
+<span class="cmd">dig exemplo.com AAAA</span> <span class="c"># IPv6</span>
+<span class="cmd">dig exemplo.com CNAME</span> <span class="c"># apelido</span>
+<span class="cmd">dig exemplo.com TXT</span>  <span class="c"># texto (verificação de domínio, SPF…)</span></code></pre>
+            <div class="tip">📌 <strong>Cache de DNS local:</strong> se o systemd-resolved estiver ativo,
+              <code>resolvectl flush-caches</code> limpa o cache — útil quando um site muda de IP.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="firewall" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="firewall-body">
+            <span class="lesson-num">5.2</span>
+            <h3 class="lesson-title">Firewall: ufw e nftables</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="firewall-body">
+            <p>Um <strong>firewall</strong> controla o tráfego de rede: quais portas aceitam conexões e de onde. No
+              Linux, o <strong>nftables</strong> (sucessor do iptables) faz o trabalho pesado; o <strong>ufw</strong> é
+              uma camada simples por cima dele, padrão no Ubuntu.</p>
+            <h3>UFW (o mais simples)</h3>
+            <pre><code><span class="cmd">sudo ufw status</span>           <span class="c"># regras ativas</span>
+<span class="cmd">sudo ufw enable</span>           <span class="c"># liga o firewall</span>
+<span class="cmd">sudo ufw allow ssh</span>        <span class="c"># libera a porta 22</span>
+<span class="cmd">sudo ufw allow 8080/tcp</span>   <span class="c"># libera uma porta específica</span>
+<span class="cmd">sudo ufw deny 23</span>          <span class="c"># bloqueia a porta 23</span>
+<span class="cmd">sudo ufw delete allow ssh</span> <span class="c"># remove uma regra</span></code></pre>
+            <div class="warn">⚠️ <strong>Antes de habilitar:</strong> libere primeiro o SSH
+              (<code>sudo ufw allow ssh</code>) e só então rode <code>sudo ufw enable</code>. Regra de bloqueio por
+              padrão pode derrubar a sua própria conexão remota.</div>
+            <h3>nftables (mais controle)</h3>
+            <p>O <code>nft</code> usa <strong>tabelas</strong>, <strong>chains</strong> (cadeias) e
+              <strong>regras</strong>. Um exemplo mínimo:</p>
+            <pre><code><span class="cmd">sudo nft list ruleset</span>    <span class="c"># mostra todas as regras atuais</span>
+
+<span class="c"># Criar uma tabela "filtro" com chain "entrada" de prioridade 0</span>
+<span class="cmd">sudo nft add table inet filtro</span>
+<span class="cmd">sudo nft add chain inet filtro entrada { type filter hook input priority 0; }</span>
+
+<span class="c"># Regras: aceitar SSH (22) e HTTP (80), bloquear o resto</span>
+<span class="cmd">sudo nft add rule inet filtro entrada tcp dport 22 accept</span>
+<span class="cmd">sudo nft add rule inet filtro entrada tcp dport 80 accept</span>
+<span class="cmd">sudo nft add rule inet filtro entrada drop</span></code></pre>
+            <div class="tip">📌 <strong>Importante:</strong> as regras do <code>nft</code> criadas na linha de comando
+              <strong>não sobrevivem ao reboot</strong>. Para persistir, salve com
+              <code>sudo nft list ruleset &gt; /etc/nftables.conf</code> e habilite o serviço
+              <code>systemctl enable nftables</code>.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="servidores-web" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="servidores-web-body">
+            <span class="lesson-num">5.3</span>
+            <h3 class="lesson-title">Servidores web: nginx e Apache</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="servidores-web-body">
+            <p>Os dois servidores web mais usados no Linux. Ambos entregam páginas estáticas e conteúdo dinâmico; o
+              <strong>nginx</strong> costuma ser mais leve e eficiente, o <strong>Apache</strong> tem suporte nativo a
+              <code>.htaccess</code>.</p>
+            <h3>Instalar e servir um site (Ubuntu)</h3>
+            <pre><code><span class="cmd">sudo apt update</span>
+<span class="cmd">sudo apt install nginx</span>   <span class="c"># ou: sudo apt install apache2</span>
+<span class="cmd">sudo systemctl status nginx</span></code></pre>
+            <p>O site padrão fica em <code>/var/www/html</code>. Crie o seu:</p>
+            <pre><code><span class="cmd">sudo mkdir -p /var/www/meusite</span>
+<span class="cmd">sudo nano /var/www/meusite/index.html</span>
+<span class="cmd">sudo chown -R $USER:$USER /var/www/meusite</span></code></pre>
+            <h3>Configurando um host virtual no nginx</h3>
+            <pre><code><span class="cmd">sudo nano /etc/nginx/sites-available/meusite</span></code></pre>
+            <pre><code>server {
+    listen 80;
+    server_name meusite.local;
+
+    root /var/www/meusite;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}</code></pre>
+            <pre><code><span class="cmd">sudo ln -s /etc/nginx/sites-available/meusite /etc/nginx/sites-enabled/</span>
+<span class="cmd">sudo nginx -t</span>            <span class="c"># testa a sintaxe ANTES de aplicar</span>
+<span class="cmd">sudo systemctl reload nginx</span>  <span class="c"># aplica sem derrubar conexões</span></code></pre>
+            <div class="tip">📌 <strong>Boas práticas:</strong> use <code>nginx -t</code> (ou
+              <code>apache2ctl -t</code>) antes de recarregar; no Apache os arquivos de site ficam em
+              <code>/etc/apache2/sites-available/</code> e a habilitação usa <code>sudo a2ensite meusite</code>.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="docker" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="docker-body">
+            <span class="lesson-num">5.4</span>
+            <h3 class="lesson-title">Containers com Docker</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="docker-body">
+            <p><strong>Containers</strong> empacotam um aplicativo e suas dependências para rodar de forma isolada e
+              portável. O <strong>Docker</strong> é a ferramenta mais popular para isso.</p>
+            <h3>Instalar (Ubuntu)</h3>
+            <pre><code><span class="cmd">sudo apt install docker.io</span>
+<span class="cmd">sudo systemctl enable --now docker</span>
+<span class="cmd">sudo usermod -aG docker $USER</span>  <span class="c"># permite rodar docker sem sudo</span>
+<span class="c"># ⚠️ faça logout e login para o grupo valer</span>
+<span class="cmd">docker --version</span></code></pre>
+            <h3>Comandos essenciais</h3>
+            <pre><code><span class="cmd">docker run -d -p 8080:80 --name meu-site nginx</span>
+<span class="c"># -d  roda em segundo plano          -p 8080:80  porta local → porta do container</span>
+<span class="c"># --name nomeia o container          nginx é a imagem base</span>
+
+<span class="cmd">docker ps</span>               <span class="c"># containers rodando</span>
+<span class="cmd">docker ps -a</span>           <span class="c"># todos (inclusive parados)</span>
+<span class="cmd">docker logs meu-site</span>   <span class="c"># logs do container</span>
+<span class="cmd">docker exec -it meu-site bash</span>  <span class="c"># abre um terminal DENTRO do container</span>
+<span class="cmd">docker stop meu-site</span>   <span class="c"># para</span>
+<span class="cmd">docker start meu-site</span>  <span class="c"># reinicia</span>
+<span class="cmd">docker rm meu-site</span>     <span class="c"># remove (após parar)</span>
+<span class="cmd">docker images</span>          <span class="c"># imagens baixadas</span>
+<span class="cmd">docker pull ubuntu</span>     <span class="c"># baixa uma imagem sem criar container</span>
+<span class="cmd">docker run -it ubuntu bash</span>  <span class="c"># roda Ubuntu interativo e entra no shell</span></code></pre>
+            <h3>Docker Compose (múltiplos serviços)</h3>
+            <p>Crie um arquivo <code>compose.yaml</code>:</p>
+            <pre><code>services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: senha_forte</code></pre>
+            <pre><code><span class="cmd">docker compose up -d</span>   <span class="c"># sobe todos os serviços</span>
+<span class="cmd">docker compose down</span>     <span class="c"># derruba tudo</span>
+<span class="cmd">docker compose ps</span>       <span class="c"># estado dos serviços</span></code></pre>
+            <div class="tip">📌 <strong>Dica:</strong> nunca rode containers como root desnecessariamente, e lembre-se:
+              dados dentro de um container somem quando ele é removido — use <em>volumes</em> para persistir.</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="module" data-title="Automação e observabilidade">
+        <h2 class="module-title">Módulo 6 — Automação e observabilidade <span class="module-badge" data-badge></span>
+        </h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="ansible" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="ansible-body">
+            <span class="lesson-num">6.1</span>
+            <h3 class="lesson-title">Automação com Ansible</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="ansible-body">
+            <p>O <strong>Ansible</strong> automatiza configurações em várias máquinas de uma vez. Você escreve o estado
+              desejado em arquivos YAML (playbooks) e o Ansible aplica via SSH — sem precisar instalar agente nas
+              máquinas.</p>
+            <h3>Instalar (na máquina de controle)</h3>
+            <pre><code><span class="cmd">sudo apt update</span>
+<span class="cmd">sudo apt install ansible</span>
+<span class="cmd">ansible --version</span></code></pre>
+            <h3>Inventário: quais máquinas gerenciar</h3>
+            <pre><code><span class="cmd">nano hosts.ini</span>   <span class="c"># inventário simples</span></code></pre>
+            <pre><code>[servidores]
+web1 ansible_host=192.168.1.20
+web2 ansible_host=192.168.1.21
+
+[servidores:vars]
+ansible_user=ana
+ansible_ssh_private_key_file=~/.ssh/id_ed25519</code></pre>
+            <h3>Testar a conexão</h3>
+            <pre><code><span class="cmd">ansible -i hosts.ini servidores -m ping</span>
+<span class="c"># deve responder "pong" em cada máquina</span></code></pre>
+            <h3>Playbook: garantir que o nginx está instalado e ativo</h3>
+            <pre><code><span class="cmd">nano playbook.yml</span></code></pre>
+            <pre><code>---
+- name: Configurar servidores web
+  hosts: servidores
+  become: true
+  tasks:
+    - name: Instalar nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Garantir que o serviço está ativo
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true</code></pre>
+            <pre><code><span class="cmd">ansible-playbook -i hosts.ini playbook.yml</span></code></pre>
+            <h3>Conceitos essenciais</h3>
+            <ul>
+              <li><strong>Playbook</strong> — o "script" YAML com as tarefas.</li>
+              <li><strong>Task</strong> — uma ação (instalar, copiar, reiniciar…).</li>
+              <li><strong>Módulo</strong> — a unidade que executa a ação (<code>apt</code>, <code>systemd</code>,
+                <code>copy</code>, <code>service</code>…).</li>
+              <li><strong>Handler</strong> — roda quando notificado (ex.: reiniciar serviço só se a config mudou).</li>
+              <li><strong>Idempotência</strong> — rodar o playbook várias vezes dá o mesmo resultado; o Ansible só muda
+                o que precisa.</li>
+            </ul>
+            <div class="tip">📌 <strong>Por que Ansible?</strong> Você escreve a configuração <em>uma vez</em> e aplica
+              em 1 ou 1000 servidores — e o estado fica documentado no repositório.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="monitoramento" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="monitoramento-body">
+            <span class="lesson-num">6.2</span>
+            <h3 class="lesson-title">Monitoramento com Prometheus e Grafana</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="monitoramento-body">
+            <p><strong>Prometheus</strong> coleta métricas (CPU, memória, HTTP…); <strong>Grafana</strong> exibe essas
+              métricas em dashboards bonitos. É o par padrão do ecossistema Linux/Kubernetes.</p>
+            <h3>Instalar Prometheus (Ubuntu)</h3>
+            <pre><code><span class="cmd">sudo apt update</span>
+<span class="cmd">sudo apt install prometheus</span>
+<span class="cmd">sudo systemctl status prometheus</span>
+<span class="cmd">sudo systemctl enable --now prometheus</span></code></pre>
+            <p>A interface web fica em <code>http://localhost:9090</code>. A configuração fica em
+              <code>/etc/prometheus/prometheus.yml</code>.</p>
+            <h3>Configuração mínima</h3>
+            <pre><code><span class="cmd">sudo nano /etc/prometheus/prometheus.yml</span></code></pre>
+            <pre><code>global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "node"
+    static_configs:
+      - targets: ["localhost:9100"]</code></pre>
+            <pre><code><span class="cmd">sudo systemctl restart prometheus</span></code></pre>
+            <h3>Exporter do sistema (métricas da máquina)</h3>
+            <pre><code><span class="cmd">sudo apt install prometheus-node-exporter</span>
+<span class="cmd">sudo systemctl enable --now prometheus-node-exporter</span>
+<span class="c"># agora o Prometheus coleta métricas em localhost:9100</span></code></pre>
+            <h3>Instalar Grafana e conectar</h3>
+            <pre><code><span class="cmd">sudo apt install -y wget gnupg</span>
+<span class="cmd">sudo mkdir -p /etc/apt/keyrings</span>
+<span class="cmd">sudo wget -O /etc/apt/keyrings/grafana.asc https://apt.grafana.com/gpg-full.key</span>
+<span class="cmd">echo "deb [signed-by=/etc/apt/keyrings/grafana.asc] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list</span>
+<span class="cmd">sudo apt update</span>
+<span class="cmd">sudo apt install grafana</span>   <span class="c"># edição OSS (a Enterprise é 'grafana-enterprise')</span>
+<span class="cmd">sudo systemctl enable --now grafana-server</span></code></pre>
+            <p>Abra <code>http://localhost:3000</code>, entre com <strong>admin / admin</strong>, adicione um
+              <strong>data source</strong> do tipo Prometheus apontando para <code>http://localhost:9090</code> e
+              importe um dashboard (ID popular: <code>1860</code>).</p>
+            <h3>Comandos de consulta úteis (PromQL)</h3>
+            <pre><code><span class="cmd">node_cpu_seconds_total</span>        <span class="c"># uso de CPU</span>
+<span class="cmd">node_memory_MemAvailable_bytes</span> <span class="c"># memória disponível</span>
+<span class="cmd">rate(node_cpu_seconds_total[5m])</span> <span class="c"># taxa média de CPU nos últimos 5 min</span></code></pre>
+            <div class="tip">📌 <strong>Arquitetura:</strong> o Prometheus <em>puxa</em> as métricas (scrape) dos
+              exporters; o Grafana <em>consulta</em> o Prometheus. Métricas são guardadas como séries temporais.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="containers-avancado" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="containers-avancado-body">
+            <span class="lesson-num">6.3</span>
+            <h3 class="lesson-title">Containers na prática: volumes e redes</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="containers-avancado-body">
+            <p>Na lição 5.4 vimos o básico do Docker. Aqui entram os dois conceitos que fazem a diferença no dia a dia:
+              <strong>volumes</strong> (persistência) e <strong>redes</strong> (comunicação entre containers).</p>
+            <h3>Volumes: dados que sobrevivem</h3>
+            <p>Arquivos criados dentro de um container somem quando ele é removido. <strong>Volumes</strong> guardam os
+              dados fora do container.</p>
+            <pre><code><span class="cmd">docker volume create meus-dados</span>   <span class="c"># cria um volume</span>
+
+<span class="cmd">docker run -d --name db -v meus-dados:/var/lib/postgresql/data postgres:16</span>
+<span class="c"># monta o volume em /var/lib/postgresql/data dentro do container</span>
+
+<span class="c"># alternativas: montar uma pasta local (-v ./dados:/caminho) ou anônimo (auto-criado)</span>
+<span class="cmd">docker volume ls</span>          <span class="c"># lista volumes</span>
+<span class="cmd">docker volume inspect meus-dados</span>  <span class="c"># detalhes (montagem no host)</span>
+<span class="cmd">docker volume rm meus-dados</span>  <span class="c"># remove (cuidado: apaga os dados)</span></code></pre>
+            <h3>Redes: containers conversando</h3>
+            <p>Por padrão, containers em uma mesma <strong>rede personalizada</strong> se encontram pelo nome — sem
+              precisar de IP fixo.</p>
+            <pre><code><span class="cmd">docker network create minha-rede</span>
+
+<span class="cmd">docker run -d --name api --network minha-rede minha-imagem</span>
+<span class="cmd">docker run -d --name banco --network minha-rede postgres:16</span>
+
+<span class="c"># dentro de "api", o banco é acessível por "banco:5432"</span>
+
+<span class="cmd">docker network ls</span>          <span class="c"># lista redes (bridge, host, none, e as suas)</span>
+<span class="cmd">docker network inspect minha-rede</span>  <span class="c"># containers conectados</span></code></pre>
+            <h3>Um fluxo completo (volume + rede + compose)</h3>
+            <pre><code><span class="cmd">nano compose.yaml</span></code></pre>
+            <pre><code>services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site:/usr/share/nginx/html
+    depends_on:
+      - api
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgres://app:senha@db:5432/app
+
+  db:
+    image: postgres:16
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: senha_forte
+
+volumes:
+  pgdata:</code></pre>
+            <pre><code><span class="cmd">docker compose up -d</span>   <span class="c"># sobe tudo: web + api + banco</span>
+<span class="cmd">docker compose ps</span>       <span class="c"># estado dos serviços</span>
+<span class="cmd">docker compose logs -f api</span>  <span class="c"># logs da api em tempo real</span></code></pre>
+            <div class="tip">📌 <strong>Conferindo o que está rodando:</strong> <code>docker stats</code> mostra
+              CPU/memória de cada container, e <code>docker inspect &lt;nome&gt;</code> revela a configuração completa.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="module" data-title="Trabalhando como um profissional">
+        <h2 class="module-title">Módulo 7 — Trabalhando como um profissional <span class="module-badge"
+            data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="editores" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="editores-body">
+            <span class="lesson-num">7.1</span>
+            <h3 class="lesson-title">Editores de texto no terminal</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="editores-body">
+            <h3>nano (simples, para começar)</h3>
+            <pre><code><span class="cmd">nano arquivo.txt</span>   <span class="c"># abre o editor</span>
+Ctrl+O   <span class="c"># salvar</span>
+Ctrl+X   <span class="c"># sair</span>
+Ctrl+W   <span class="c"># buscar texto</span>
+Ctrl+G   <span class="c"># ajuda</span></code></pre>
+            <h3>vim (poderoso, vale a pena aprender)</h3>
+            <p>O vim tem <strong>modos</strong>: <em>normal</em> (navegação/comandos), <em>inserção</em> (digitar) e
+              <em>linha de comando</em> (<code>:</code>).</p>
+            <pre><code><span class="cmd">vim arquivo.txt</span>   <span class="c"># abre</span>
+i        <span class="c"># entra em modo de inserção (digitar)</span>
+Esc      <span class="c"># volta ao modo normal</span>
+:q       <span class="c"># sair (sem salvar se nada mudou)</span>
+:q!      <span class="c"># sair descartando mudanças</span>
+:w       <span class="c"># salvar</span>
+:wq      <span class="c"># salvar e sair</span>
+dd       <span class="c"># apagar a linha atual</span>
+yy       <span class="c"># copiar a linha</span>
+p        <span class="c"># colar</span>
+u        <span class="c"># desfazer</span>
+/servidor <span class="c"># buscar "servidor"</span>
+:set nu  <span class="c"># mostrar números de linha</span></code></pre>
+            <div class="tip">📌 Pratique com <code>vimtutor</code> — um tutorial interativo que já vem com o vim. Vale o
+              investimento: o vim está em quase todo servidor.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="scripting" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="scripting-body">
+            <span class="lesson-num">7.2</span>
+            <h3 class="lesson-title">Variáveis de ambiente e shell scripting</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="scripting-body">
+            <h3>Variáveis de ambiente</h3>
+            <pre><code><span class="cmd">echo $PATH</span>          <span class="c"># pastas onde o shell procura comandos</span>
+<span class="cmd">echo $HOME</span>          <span class="c"># sua pasta pessoal</span>
+<span class="cmd">echo $USER</span>          <span class="c"># seu usuário</span>
+<span class="cmd">env</span>                 <span class="c"># lista todas as variáveis de ambiente</span>
+<span class="cmd">export EDITOR=nano</span>  <span class="c"># define uma variável para esta sessão</span></code></pre>
+            <h3>Um primeiro script</h3>
+            <pre><code><span class="cmd">nano saudacao.sh</span>   <span class="c"># crie o arquivo e digite:</span></code></pre>
+            <pre><code><span class="c">#!/bin/bash</span>
+<span class="c"># isso é um comentário</span>
+nome="mundo"
+echo "Olá, $nome!"
+echo "Hoje é $(date +%d/%m/%Y)"
+echo "Primeiro argumento: $1"</code></pre>
+            <pre><code><span class="cmd">chmod +x saudacao.sh</span>   <span class="c"># torna o script executável</span>
+<span class="cmd">./saudacao.sh</span>           <span class="c"># executa (o ./ indica o diretório atual)</span></code></pre>
+            <h3>Estruturas comuns</h3>
+            <pre><code><span class="c">#!/bin/bash</span>
+<span class="c"># condicional</span>
+if [ -f "/etc/hosts" ]; then
+    echo "O arquivo /etc/hosts existe."
+else
+    echo "Arquivo não encontrado."
+fi
+
+<span class="c"># laço for</span>
+for arquivo in *.txt; do
+    echo "Processando $arquivo"
+done
+
+<span class="c"># status de saída: $? é 0 se o último comando deu certo</span>
+grep "root" /etc/passwd
+echo "Status: $?"</code></pre>
+            <h3>Depurando</h3>
+            <pre><code><span class="cmd">bash -n script.sh</span>   <span class="c"># só verifica a sintaxe (não executa)</span>
+<span class="cmd">bash -x script.sh</span>   <span class="c"># executa mostrando cada passo (ótimo para debugar)</span></code></pre>
+            <div class="tip">📌 <strong>O <code>#!/bin/bash</code> é o "shebang"</strong> — diz ao sistema qual
+              interpretador usar. Sem ele, <code>./script.sh</code> não executa.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="logs" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="logs-body">
+            <span class="lesson-num">7.3</span>
+            <h3 class="lesson-title">Logs e resolução de problemas</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="logs-body">
+            <p>Quando algo falha, os <strong>logs</strong> contam o que aconteceu. Saber onde procurar resolve a maioria
+              dos problemas.</p>
+            <h3>Onde ficam os logs</h3>
+            <table>
+              <tr>
+                <th>Arquivo</th>
+                <th>Conteúdo</th>
+              </tr>
+              <tr>
+                <td><code>/var/log/syslog</code></td>
+                <td>Mensagens gerais do sistema</td>
+              </tr>
+              <tr>
+                <td><code>/var/log/auth.log</code></td>
+                <td>Logins, sudo, autenticação</td>
+              </tr>
+              <tr>
+                <td><code>/var/log/dmesg</code></td>
+                <td>Mensagens do kernel / hardware</td>
+              </tr>
+            </table>
+            <h3>journalctl (logs do systemd)</h3>
+            <pre><code><span class="cmd">journalctl -u nginx</span>        <span class="c"># logs de um serviço</span>
+<span class="cmd">journalctl -u nginx -f</span>     <span class="c"># acompanha em tempo real</span>
+<span class="cmd">journalctl -p err</span>          <span class="c"># só erros</span>
+<span class="cmd">journalctl --since today</span>   <span class="c"># desde hoje</span></code></pre>
+            <h3>Fluxo de diagnóstico</h3>
+            <ol>
+              <li><strong>O serviço está rodando?</strong> → <code>systemctl status nginx</code></li>
+              <li><strong>O que ele diz?</strong> → <code>journalctl -u nginx --since today</code></li>
+              <li><strong>Há espaço/recurso?</strong> → <code>df -h</code>, <code>free -h</code>, <code>top</code></li>
+              <li><strong>Confere a config</strong> → valide a sintaxe (<code>nginx -t</code>, <code>sshd -t</code>) e
+                reinicie.</li>
+            </ol>
+            <div class="tip">📌 <strong>Erros de permissão?</strong> O log aponta o arquivo. Confira o dono e as
+              permissões com <code>ls -l</code> e ajuste com <code>chown</code>/<code>chmod</code>.</div>
+          </div>
+        </article>
+
+        <article class="lesson" id="seguranca" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="seguranca-body">
+            <span class="lesson-num">7.4</span>
+            <h3 class="lesson-title">Boas práticas de segurança</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="seguranca-body">
+            <ul>
+              <li>🔑 <strong>Senhas fortes e únicas;</strong> use um gerenciador de senhas.</li>
+              <li>🚫 <strong>Nunca use root no dia a dia</strong> — prefira <code>sudo</code>.</li>
+              <li>🔄 <strong>Mantenha o sistema atualizado:</strong>
+                <code>sudo apt update &amp;&amp; sudo apt upgrade</code>.</li>
+              <li>🔐 <strong>Firewall:</strong> no Ubuntu, <code>sudo ufw enable</code> e libere só o necessário
+                (<code>sudo ufw allow ssh</code>).</li>
+              <li>📁 <strong>Permissões mínimas:</strong> evite <code>chmod 777</code>.</li>
+              <li>🔎 <strong>Desconfie de <code>curl ... | sudo bash</code>:</strong> leia o script antes de executar.
+              </li>
+              <li>🗄️ <strong>Backups:</strong> com <code>tar</code> e <code>rsync</code> (ver <a href="#discos">lição
+                  4.2</a>).</li>
+              <li>🔑 <strong>Prefira chaves SSH</strong> a senha para acesso remoto.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================= MÓDULO 8 ================= -->
+      <section class="module" data-title="Prática">
+        <h2 class="module-title">Módulo 8 — Prática <span class="module-badge" data-badge></span></h2>
+        <p class="module-progress" data-module-progress></p>
+
+        <article class="lesson" id="exercicios" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="exercicios-body">
+            <span class="lesson-num">8.1</span>
+            <h3 class="lesson-title">Exercícios práticos</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="exercicios-body">
+            <ol>
+              <li>Abra o terminal e descubra: <em>quem você é</em>, <em>onde está</em> e <em>qual o kernel</em>.</li>
+              <li>Crie a estrutura <code>~/projetos/site/assets</code> de uma só vez.</li>
+              <li>Crie <code>notas.txt</code>, escreva 3 linhas, veja o conteúdo e conte as linhas.</li>
+              <li>Copie para <code>backup.txt</code>, mova para <code>~/projetos</code> e depois apague.</li>
+              <li>Use <code>ls -l</code> e explique o que significa <code>-rw-r--r--</code>.</li>
+              <li>Dê permissão de execução a um script e rode com <code>./script.sh</code>.</li>
+              <li>Use <code>ps aux | grep &lt;seu-programa&gt;</code> e encerre com <code>kill</code>.</li>
+              <li>Descubra RAM e disco da sua máquina.</li>
+              <li>Consulte o <code>man</code> para achar a opção do <code>ls</code> que ordena por tamanho.</li>
+              <li>Veja seu IP e o gateway padrão.</li>
+              <li>Crie um serviço systemd simples que rode um script ao iniciar.</li>
+              <li>Agende um script diário com cron e confirme no log.</li>
+              <li>Gere um par de chaves SSH e conecte em uma máquina remota sem senha.</li>
+              <li>Escreva um script que receba um nome como argumento e imprima "Olá, nome".</li>
+              <li>Faça um backup compactado da pasta <code>~/projetos</code> com <code>tar</code>.</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="lesson" id="glossario" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="glossario-body">
+            <span class="lesson-num">8.2</span>
+            <h3 class="lesson-title">Glossário</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="glossario-body">
+            <table>
+              <tr>
+                <th>Termo</th>
+                <th>Significado</th>
+              </tr>
+              <tr>
+                <td><strong>Kernel</strong></td>
+                <td>Núcleo do SO; gerencia hardware e processos.</td>
+              </tr>
+              <tr>
+                <td><strong>Distribuição (distro)</strong></td>
+                <td>Pacote completo: kernel + ferramentas + gerenciador de pacotes.</td>
+              </tr>
+              <tr>
+                <td><strong>Shell</strong></td>
+                <td>Interpretador de comandos (Bash, Zsh, Fish).</td>
+              </tr>
+              <tr>
+                <td><strong>Terminal</strong></td>
+                <td>Programa que fornece a janela de texto para a shell.</td>
+              </tr>
+              <tr>
+                <td><strong>Comando / Opção / Argumento</strong></td>
+                <td>O programa / o modificador (<code>-l</code>) / o alvo.</td>
+              </tr>
+              <tr>
+                <td><strong>Pipe (<code>|</code>)</strong></td>
+                <td>Conecta a saída de um comando à entrada de outro.</td>
+              </tr>
+              <tr>
+                <td><strong>Diretório</strong></td>
+                <td>Pasta que organiza arquivos.</td>
+              </tr>
+              <tr>
+                <td><strong>Processo</strong></td>
+                <td>Programa em execução, identificado por um PID.</td>
+              </tr>
+              <tr>
+                <td><strong>Daemon / Serviço</strong></td>
+                <td>Programa que roda em segundo plano (ex.: servidor web).</td>
+              </tr>
+              <tr>
+                <td><strong>systemd</strong></td>
+                <td>Sistema de inicialização e gerenciador de serviços na maioria das distros.</td>
+              </tr>
+              <tr>
+                <td><strong>cron</strong></td>
+                <td>Agendador de tarefas em horários pré-definidos.</td>
+              </tr>
+              <tr>
+                <td><strong>root / sudo</strong></td>
+                <td>Superusuário / executar um comando como root.</td>
+              </tr>
+              <tr>
+                <td><strong>Permissões</strong></td>
+                <td>Regras de leitura (r), escrita (w) e execução (x) por dono, grupo e outros.</td>
+              </tr>
+              <tr>
+                <td><strong>Pacote / Repositório</strong></td>
+                <td>Programa pronto para instalar / servidor de onde ele é baixado.</td>
+              </tr>
+              <tr>
+                <td><strong>Mount (montar)</strong></td>
+                <td>Anexar um disco/partição a um diretório.</td>
+              </tr>
+              <tr>
+                <td><strong>SSH</strong></td>
+                <td>Protocolo de acesso remoto seguro e criptografado.</td>
+              </tr>
+              <tr>
+                <td><strong>Log</strong></td>
+                <td>Registro de eventos do sistema ou de um serviço.</td>
+              </tr>
+            </table>
+          </div>
+        </article>
+
+        <article class="lesson" id="referencias" data-collapsed="false" data-done="false">
+          <button class="lesson-head" type="button" aria-expanded="true" aria-controls="referencias-body">
+            <span class="lesson-num">8.3</span>
+            <h3 class="lesson-title">Referências e documentação</h3>
+            <button class="done-btn" type="button" aria-pressed="false">Marcar como concluído</button>
+            <span class="collapse-arrow" aria-hidden="true">▼</span>
+          </button>
+          <div class="lesson-body" id="referencias-body">
+            <p>Fontes consultadas para construir e verificar os comandos deste curso. As marcadas com <strong>★</strong> foram conferidas diretamente durante a revisão; as demais são as referências oficiais de cada ferramenta.</p>
+            <table>
+              <tr><th>Ferramenta / tópico</th><th>Comandos usados</th><th>Documentação oficial</th></tr>
+              <tr><td><strong>★ Grafana</strong> (instalação Debian/Ubuntu)</td><td><code>wget</code>, <code>apt</code>, <code>systemctl</code></td><td>grafana.com/docs/grafana → Installation → Debian/Ubuntu</td></tr>
+              <tr><td><strong>★ Prometheus</strong> (getting started)</td><td><code>prometheus.yml</code>, <code>scrape_interval</code></td><td>prometheus.io/docs/prometheus/latest/getting_started</td></tr>
+              <tr><td><strong>★ nftables</strong> (gestão de regras)</td><td><code>nft add table/chain/rule</code>, <code>nft list ruleset</code></td><td>wiki.nftables.org — Simple rule management</td></tr>
+              <tr><td><strong>★ Ubuntu packages</strong> (verificação de pacotes)</td><td><code>apt install prometheus</code></td><td>packages.ubuntu.com — páginas do pacote <code>prometheus</code></td></tr>
+              <tr><td><strong>GNU Coreutils</strong></td><td><code>ls</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>mkdir</code>, <code>touch</code>, <code>cat</code>, <code>head</code>, <code>tail</code>, <code>sort</code>, <code>uniq</code>, <code>wc</code>, <code>df</code>, <code>du</code>, <code>chmod</code>, <code>chown</code>, <code>chgrp</code>, <code>date</code>, <code>echo</code></td><td>gnu.org/software/coreutils/manual</td></tr>
+              <tr><td><strong>Bash</strong></td><td><code>if</code>, <code>for</code>, variáveis, <code>$?</code>, <code>export</code>, shebang</td><td>gnu.org/software/bash/manual</td></tr>
+              <tr><td><strong>grep / find</strong></td><td><code>grep</code>, <code>find</code></td><td>gnu.org/software/grep/manual · man7.org/linux/man-pages/man1/find.1.html</td></tr>
+              <tr><td><strong>systemd — systemctl</strong></td><td><code>systemctl start/stop/restart/enable/disable</code>, <code>list-units</code></td><td>freedesktop.org/software/systemd/man/systemctl.html</td></tr>
+              <tr><td><strong>systemd — journalctl</strong></td><td><code>journalctl -u/-f/-p/--since</code></td><td>freedesktop.org/software/systemd/man/journalctl.html</td></tr>
+              <tr><td><strong>cron</strong></td><td><code>crontab -e/-l/-r</code>, campos de tempo</td><td>man7.org/linux/man-pages/man5/crontab.5.html</td></tr>
+              <tr><td><strong>tar</strong></td><td><code>tar -czf/-xzf/-tzf</code></td><td>gnu.org/software/tar/manual</td></tr>
+              <tr><td><strong>rsync</strong></td><td><code>rsync -av</code>, <code>--delete</code>, <code>-e ssh</code></td><td>download.samba.org/pub/rsync/rsync.1</td></tr>
+              <tr><td><strong>OpenSSH</strong></td><td><code>ssh</code>, <code>scp</code>, <code>sftp</code>, <code>ssh-keygen</code>, <code>ssh-copy-id</code></td><td>openssh.com/manual.html</td></tr>
+              <tr><td><strong>iproute2 (ip / ss)</strong></td><td><code>ip a</code>, <code>ip route</code>, <code>ss</code></td><td>man7.org/linux/man-pages/man8/ip.8.html</td></tr>
+              <tr><td><strong>BIND — dig / host / nslookup</strong></td><td><code>dig</code>, <code>host</code>, <code>nslookup</code>, <code>resolvectl</code></td><td>isc.org/docs (BIND 9) · freedesktop.org/software/systemd/man/resolvectl.html</td></tr>
+              <tr><td><strong>UFW</strong></td><td><code>ufw enable/allow/deny/delete</code></td><td>help.ubuntu.com/community/UFW · manpages (ufw)</td></tr>
+              <tr><td><strong>nginx</strong></td><td><code>nginx -t</code>, host virtual, <code>try_files</code></td><td>nginx.org/en/docs</td></tr>
+              <tr><td><strong>Apache</strong></td><td><code>apache2ctl -t</code>, <code>a2ensite</code></td><td>httpd.apache.org/docs</td></tr>
+              <tr><td><strong>Docker</strong></td><td><code>docker run/ps/logs/exec/stop/rm/volume/network</code></td><td>docs.docker.com</td></tr>
+              <tr><td><strong>Docker Compose</strong></td><td><code>docker compose up/down/ps/logs</code>, <code>compose.yaml</code></td><td>docs.docker.com/compose</td></tr>
+              <tr><td><strong>Ansible</strong></td><td><code>ansible</code>, <code>ansible-playbook</code>, módulos <code>apt</code>/<code>systemd</code></td><td>docs.ansible.com</td></tr>
+              <tr><td><strong>node_exporter</strong></td><td><code>prometheus-node-exporter</code></td><td>github.com/prometheus/node_exporter</td></tr>
+              <tr><td><strong>vim</strong></td><td><code>vim</code>, <code>vimtutor</code></td><td>vim.org/docs.php</td></tr>
+              <tr><td><strong>nano</strong></td><td><code>nano</code></td><td>nano-editor.org/docs.php</td></tr>
+              <tr><td><strong>WSL</strong></td><td><code>wsl --install</code>, <code>wsl --list</code>, <code>--set-version</code></td><td>learn.microsoft.com/windows/wsl</td></tr>
+              <tr><td><strong>Ubuntu (ISO/instalação)</strong></td><td>—</td><td>ubuntu.com/download</td></tr>
+              <tr><td><strong>VirtualBox</strong></td><td>—</td><td>virtualbox.org/manual</td></tr>
+            </table>
+            <div class="tip">📌 <strong>Dica:</strong> em qualquer máquina Linux, o atalho <code>man comando</code> abre a referência local da ferramenta — a fonte mais confiável que existe na sua própria máquina.</div>
+          </div>
+        </article>
+      </section>
+
+      <div class="tip" style="margin-top:28px">
+        🎉 <strong>Você chegou ao fim!</strong> O próximo passo é escolher uma distribuição, instalar em uma máquina
+        virtual (VirtualBox) ou no WSL (Windows) e praticar — Linux se aprende fazendo.
+      </div>
+    </main>
+  </div>
+
+  <script src="fundamentos-de-linux.js"></script>
+</body>
+
+</html>
